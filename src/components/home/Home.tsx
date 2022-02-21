@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Slider } from "./Slider";
+import {Banner} from "./Banner";
+import HorizontalList from "./HorizontalList"
+import WhyUs from "./WhyUs";
 
- function Home() {
+
+export function Home() {
   return (
-    <div>hoffffme.tsx</div>
-  )
-}
+    <div>
+      <Slider />;
+      <Banner />;
+      <HorizontalList />;
+      <WhyUs/>
 
-export default Home
+
+    </div>
+  );
+}
