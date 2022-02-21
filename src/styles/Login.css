@@ -1,0 +1,142 @@
+.back_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
+    margin: 15px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  
+  
+  .login_container .login_content .login_title {
+    text-align: center;
+    padding: 30px;
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: 2px;
+  }
+  .login_container .login_content .login_form_box {
+    position: relative;
+    width: 80%;
+    height: 3rem;
+    margin: 10px auto;
+  }
+  .login_container .login_content .login_form_box_input {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #e1e5ee;
+    border-radius: 40px;
+    color: #000;
+    outline: none;
+    padding: 1.25rem;
+    background: none;
+  }
+  .login_container .login_content .login_form_box_input:focus {
+    border-color: #0000006b;
+  }
+  .login_container .login_content .login_form_box_label {
+    position: absolute;
+    left: 1.5rem;
+    top: 30%;
+    color: #0000006b;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    background-color: #fff;
+    padding: 0 2px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    z-index: -2;
+  }
+  .login_container .login_content .login_form_box_input:focus ~ .login_form_box_label,
+  .login_container .login_content .login_form_box_input:not(:placeholder-shown).login_form_box_input:not(:focus) ~ .login_form_box_label {
+    top: -0.5rem;
+    font-size: 0.8rem;
+    left: 0.8rem;
+    z-index: 2;
+  }
+  .login_container .login_content .eye_icon {
+    font-size: 20px;
+    position: absolute;
+    top: 30%;
+    right: 20px;
+  }
+  .login_container .login_content .eye_icon:nth-of-type(2) {
+    display: none;
+  }
+  .login_container .login_content .login_forgot_link {
+    font-size: 13px;
+    font-weight: 300;
+    margin-left: 280px;
+    color: #0000009a;
+  }
+  .login_container .login_content .login_btn {
+    background-color: #FBB03B;
+    height: 45px;
+    width: 80%;
+    margin: 12px auto;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+  }
+  .login_container .login_content .login_socials_btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto 0 auto;
+  }
+  .login_container .login_content .login_socials_btns .social_icon {
+    font-size: 17px;
+  }
+  .login_container .login_content .login_socials_btns .login_gmail_btn {
+    border: 1px solid red;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45%;
+  }
+  .login_container .login_content .login_socials_btns .login_gmail_btn .gmail_icon {
+    color: red;
+  }
+  .login_container .login_content .login_socials_btns .login_facebook_btn {
+    background-color: #4267B2;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45%;
+  }
+  
+  .bottom_links {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+  }
+  .bottom_links .not_member {
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .bottom_links .sign_up {
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  /*# sourceMappingURL=login.css.map */
+  
