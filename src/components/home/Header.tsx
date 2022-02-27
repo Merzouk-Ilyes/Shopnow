@@ -7,8 +7,20 @@ import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 
-function Header(props: {color: string }) {
+function Header(props: { color: string }) {
   function openNav() {
     let sideNavWidth = document.getElementById("mySidenav");
     if (sideNavWidth) sideNavWidth.style.width = "100vw";
@@ -27,26 +39,37 @@ function Header(props: {color: string }) {
     if (searchContainerHidden) searchContainerHidden.style.display = "none";
   }
   return (
-    <div className={`${props.color} header h-[11vh] flex align-start justify-center relative text-white`} >
+    <div
+      className={`${props.color} header h-[11vh] flex align-start justify-center relative text-white`}
+    >
       <div className="container flex justify-between items-center flex-wrap w-[80vw] h-[11vh] ">
         <Link to="/" className="icon-link">
           <div className="logo text-lg font-bold ">E-Shop</div>
         </Link>
-        <ul className="flex h-[11vh] " > 
-          <li className="flex items-center my-0 mx-6 " >
-            <a href="#men" className="text-sm font-medium tracking-widest transition relative	">
+        <ul className="flex h-[11vh] ">
+          <li className="flex items-center my-0 mx-6 ">
+            <a
+              href="#men"
+              className="text-sm font-medium tracking-widest transition relative	"
+            >
               Men
             </a>
             <MainMenu genre="men" />
           </li>
           <li className="flex items-center my-0 mx-6 ">
-            <a href="#women" className="text-sm font-medium tracking-widest transition relative	">
+            <a
+              href="#women"
+              className="text-sm font-medium tracking-widest transition relative	"
+            >
               Women
             </a>
             <MainMenu genre="women" />
           </li>
           <li className="flex items-center my-0 mx-6 ">
-            <a href="#kids" className="text-sm font-medium tracking-widest transition relative	">
+            <a
+              href="#kids"
+              className="text-sm font-medium tracking-widest transition relative	"
+            >
               Kids
             </a>
             <MainMenu genre="kids" />
@@ -78,15 +101,32 @@ function Header(props: {color: string }) {
               className="search-box "
               placeholder="Enter the product you are looking for"
             />
-            <BiSearchAlt className="search-icon  " />
+            <BiSearchAlt className="search-icon text-[18px]  " />
           </div>
 
-          <Link to="/cart" className="icon-link h-[48px] ">
-            <RiShoppingCartLine className="icon relative text-5xl py-0 px-4" />
+          <Link to="/cart" className="icon-link  ">
+            <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />
+            <Badge colorScheme='red'>2</Badge>
           </Link>
-          <Link to="/login" className="icon-link h-[48px]">
-            <BsPerson className="icon person relative text-5xl py-0 px-4" />
-          </Link>
+          {true ? (
+            <Menu>
+              <MenuButton>
+                <Avatar name="MERZOUK ILYES" size="md" />
+              </MenuButton>
+              <Box color="black">
+                <MenuList>
+                  <MenuItem>Profile</MenuItem>
+                  <Box color="red">
+                    <MenuItem>Logout </MenuItem>
+                  </Box>
+                </MenuList>
+              </Box>
+            </Menu>
+          ) : (
+            <Link to="/login" className="icon-link h-[48px]">
+              <BsPerson className="icon person relative text-5xl py-0 px-4" />
+            </Link>
+          )}
 
           <HiOutlineMenu className="icon menu" onClick={openNav} />
         </div>
