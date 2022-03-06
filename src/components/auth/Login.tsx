@@ -6,9 +6,10 @@ import { SiGmail } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { authHandler } from "../../services/services";
+import { authHandler,logoutHandler } from "../../services/services";
 import { eyeTogglerOne, eyeTogglerTwo } from "../../services/helpers";
 import { ToastContainer } from "react-toastify";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 export type loginProps = {
   title: string;
@@ -18,7 +19,8 @@ function Login(props: loginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
-  // let authToken = sessionStorage.getItem('Auth_Token')
+  const dispatch = useDispatch();
+
     
   return (
     <div className="login">
@@ -27,6 +29,7 @@ function Login(props: loginProps) {
         <div className="back_link">
           <BsArrowLeft />
           <p> Back to store</p>
+          
         </div>
       </Link>
       <div
@@ -45,7 +48,7 @@ function Login(props: loginProps) {
         pauseOnFocusLoss
         draggable
         pauseOnHover/> 
-          <p className="login_title text-center ">{props.title}</p>
+          <p className="login_title text-center ">{props.title }</p>
           <div className="login_form">
             <div className="login_form_box">
               <input
@@ -101,14 +104,14 @@ function Login(props: loginProps) {
             {props.type === "login" ? (
               <button
                 className="login_btn"
-                onClick={() => authHandler(email, password, props, navigate)}
+                onClick={() => authHandler(email, password, props, navigate,dispatch)}
               >
                 Sign in
               </button>
             ) : (
               <button
                 className="login_btn"
-                onClick={() => authHandler(email, password, props, navigate)}
+                onClick={() => authHandler(email, password, props, navigate,dispatch)}
               >
                 Sign up
               </button>

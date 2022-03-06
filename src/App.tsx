@@ -1,10 +1,19 @@
 import { Home } from "./components/home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Cart from "./components/cart/Cart";
-import Login from "./components/auth/Login"
-import Forget from "./components/auth/Forget"
+import Login from "./components/auth/Login";
+import Forget from "./components/auth/Forget";
+import { useDispatch } from "react-redux";
 
 function App() {
+  let authToken = sessionStorage.getItem("UID");
+  const dispatch = useDispatch();
+  if (authToken) {
+    dispatch({ type: "setLogin" });
+  } else {
+    dispatch({ type: "setLogout" });
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -12,9 +21,12 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* <Route path="cart" element={<Cart />} /> */}
           <Route path="login" element={<Login title="Login" type="login" />} />
-          <Route path="register" element={<Login title="Register" type="register" />} />
+          <Route
+            path="register"
+            element={<Login title="Register" type="register" />}
+          />
           <Route path="forget" element={<Forget />} />
-        
+
           <Route
             path="*"
             element={

@@ -6,19 +6,19 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Avatar,
-  Badge,
   Box,
-  Button,
   Menu,
   MenuButton,
-  MenuDivider,
-  MenuGroup,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { authHandler,logoutHandler } from "../../services/services";
+
+
 
 function Header(props: { color: string }) {
   function openNav() {
@@ -38,6 +38,13 @@ function Header(props: { color: string }) {
     )[0];
     if (searchContainerHidden) searchContainerHidden.style.display = "none";
   }
+  const isLogged = useSelector((state:RootStateOrAny) => state.isLogged)
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+ 
+  
   return (
     <div
       className={`${props.color} header h-[11vh] flex align-start justify-center relative text-white`}
@@ -105,10 +112,9 @@ function Header(props: { color: string }) {
           </div>
 
           <Link to="/cart" className="icon-link  ">
-            <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />
-            <Badge colorScheme='red'>2</Badge>
+              <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />            
           </Link>
-          {true ? (
+          {isLogged ? (
             <Menu>
               <MenuButton>
                 <Avatar name="MERZOUK ILYES" size="md" />
@@ -117,14 +123,14 @@ function Header(props: { color: string }) {
                 <MenuList>
                   <MenuItem>Profile</MenuItem>
                   <Box color="red">
-                    <MenuItem>Logout </MenuItem>
+                    <MenuItem onClick={()=> logoutHandler(navigate,dispatch)} >Logout </MenuItem>
                   </Box>
                 </MenuList>
               </Box>
             </Menu>
           ) : (
-            <Link to="/login" className="icon-link h-[48px]">
-              <BsPerson className="icon person relative text-5xl py-0 px-4" />
+            <Link to="/login" className="icon-link">
+              <BsPerson className="icon  relative text-[54px] py-0 px-4" />
             </Link>
           )}
 

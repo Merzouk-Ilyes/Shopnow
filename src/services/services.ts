@@ -28,15 +28,18 @@ const usersRef = collection(db, "users");
 //       console.error("Error adding document: ", e);
 //     }
 // }
-export const handleLogout = (navigate: any) => {
-  sessionStorage.removeItem("Auth_Token");
-  navigate("/login");
+export const logoutHandler = (navigate: any ,dispatch: any) => {
+  sessionStorage.removeItem("UID");
+  navigate("/");
+  dispatch({type: "setLogout"})
+
 };
 export const authHandler = (
   email: string,
   password: any,
   props: loginProps,
-  navigate: any
+  navigate: any,
+  dispatch: any
 ) => {
   const auth = getAuth();
   if (props.type === "register") {
@@ -48,7 +51,7 @@ export const authHandler = (
         let UID = response.user.uid;
         setTimeout(() => {
           navigate("/");
-        }, 4500);
+        }, 3000);
 
         sessionStorage.setItem("UID", UID);
       })
@@ -71,8 +74,10 @@ export const authHandler = (
         let UID = response.user.uid;
         setTimeout(() => {
           navigate("/");
-        }, 4500);
+        }, 3000);
         sessionStorage.setItem("UID", UID);
+        dispatch({type: "setLogin"})
+
       })
       .catch((error) => {
         console.log(error);
