@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider } from "./Slider";
+import { Slider } from "./Content";
 import {Banner} from "./Banner";
 import HorizontalList from "./HorizontalList"
 import WhyUs from "./WhyUs";

@@ -1,4 +1,4 @@
-import { db } from "../firebase";
+// import { db } from "../firebase";
 import {
   collection,
   getDocs,
@@ -12,27 +12,21 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { loginProps } from "../components/auth/Login";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const usersRef = collection(db, "users");
+import { actions } from "./store";
 
-//  q = async () => {
-//   try {
-//       const querySnapshot = await getDocs(usersRef)
-//       querySnapshot.forEach((doc) => {
-//           console.log(`${doc.id} => ${doc.data().name}`);
-//         });
-//     } catch (e) {
-//       console.error("Error adding document: ", e);
-//     }
-// }
-export const logoutHandler = (navigate: any ,dispatch: any) => {
+// const usersRef = collection(db, "users");
+export const logoutHandler = (navigate: any, dispatch: any) => {
   sessionStorage.removeItem("UID");
   navigate("/");
-  dispatch({type: "setLogout"})
-
+  // dispatch({type: "setLogout"})
+  dispatch(actions.setLogin(false));
+  toast.success("Logged out successfully !");
 };
 export const authHandler = (
   email: string,
@@ -76,8 +70,8 @@ export const authHandler = (
           navigate("/");
         }, 3000);
         sessionStorage.setItem("UID", UID);
-        dispatch({type: "setLogin"})
-
+        // dispatch({type: "setLogin"})
+        dispatch(actions.setLogin(true));
       })
       .catch((error) => {
         console.log(error);
@@ -89,4 +83,39 @@ export const authHandler = (
         }
       });
   }
+};
+
+export const googleAuth = (dispatch: any,navigate:any) => {
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential ?  credential.accessToken : "";
+      // The signed-in user info.
+      const user = result.user;
+      toast.success("Login successful !");
+
+      console.log(user)
+      let UID = user.uid
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+      sessionStorage.setItem("UID", UID);
+
+      dispatch(actions.setLogin(true));
+
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 };

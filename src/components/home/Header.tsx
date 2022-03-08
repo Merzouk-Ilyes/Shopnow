@@ -16,35 +16,14 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { authHandler,logoutHandler } from "../../services/services";
-
-
+import { authHandler, logoutHandler } from "../../services/services";
+import { closeNav, openNav } from "../../services/helpers";
 
 function Header(props: { color: string }) {
-  function openNav() {
-    let sideNavWidth = document.getElementById("mySidenav");
-    if (sideNavWidth) sideNavWidth.style.width = "100vw";
-
-    let searchContainerHidden = document.querySelectorAll<HTMLElement>(
-      "search-container-hidden"
-    )[0];
-    if (searchContainerHidden) searchContainerHidden.style.display = "flex";
-  }
-  function closeNav() {
-    let sideNavWidth = document.getElementById("mySidenav");
-    if (sideNavWidth) sideNavWidth.style.width = "0";
-    let searchContainerHidden = document.querySelectorAll<HTMLElement>(
-      "search-container-hidden"
-    )[0];
-    if (searchContainerHidden) searchContainerHidden.style.display = "none";
-  }
-  const isLogged = useSelector((state:RootStateOrAny) => state.isLogged)
+  const isLogged = useSelector((state: RootStateOrAny) => state.isLogged);
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
-
- 
-  
   return (
     <div
       className={`${props.color} header h-[11vh] flex align-start justify-center relative text-white`}
@@ -85,7 +64,7 @@ function Header(props: { color: string }) {
 
         {/* BURGER MENU */}
         <div id="mySidenav" className="sidenav">
-          <GrClose className="closebtn" onClick={closeNav} />
+          <GrClose className="closebtn" onClick={() => closeNav(document)} />
           <div className="search-container search-container-hidden">
             <input
               id="search-box"
@@ -112,7 +91,7 @@ function Header(props: { color: string }) {
           </div>
 
           <Link to="/cart" className="icon-link  ">
-              <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />            
+            <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />
           </Link>
           {isLogged ? (
             <Menu>
@@ -123,7 +102,9 @@ function Header(props: { color: string }) {
                 <MenuList>
                   <MenuItem>Profile</MenuItem>
                   <Box color="red">
-                    <MenuItem onClick={()=> logoutHandler(navigate,dispatch)} >Logout </MenuItem>
+                    <MenuItem onClick={() => logoutHandler(navigate, dispatch)}>
+                      Logout{" "}
+                    </MenuItem>
                   </Box>
                 </MenuList>
               </Box>
@@ -134,7 +115,10 @@ function Header(props: { color: string }) {
             </Link>
           )}
 
-          <HiOutlineMenu className="icon menu" onClick={openNav} />
+          <HiOutlineMenu
+            className="icon menu"
+            onClick={() => openNav(document)}
+          />
         </div>
       </div>
     </div>

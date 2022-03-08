@@ -6,10 +6,9 @@ import { SiGmail } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { authHandler,logoutHandler } from "../../services/services";
+import { authHandler,googleAuth } from "../../services/services";
 import { eyeTogglerOne, eyeTogglerTwo } from "../../services/helpers";
-import { ToastContainer } from "react-toastify";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 
 export type loginProps = {
   title: string;
@@ -38,16 +37,6 @@ function Login(props: loginProps) {
       items-center"
       >
         <div className="login_content h-[70vh] w-[450px]">
-        <ToastContainer 
-        position="top-center"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover/> 
           <p className="login_title text-center ">{props.title }</p>
           <div className="login_form">
             <div className="login_form_box">
@@ -71,11 +60,11 @@ function Login(props: loginProps) {
               <label className="login_form_box_label">Password</label>
               <AiOutlineEye
                 className="eye_icon"
-                onClick={() => eyeTogglerOne}
+                onClick={() => eyeTogglerOne(document)}
               />
               <AiOutlineEyeInvisible
                 className="eye_icon"
-                onClick={() => eyeTogglerTwo}
+                onClick={() => eyeTogglerTwo(document)}
               />
             </div>
             <Link to="/forget">
@@ -92,7 +81,7 @@ function Login(props: loginProps) {
                   <FaFacebookF className="social_icon facebook_icon" />
                   Facebook
                 </div>
-                <div className="login_btn  login_gmail_btn">
+                <div className="login_btn  login_gmail_btn" onClick={() => googleAuth(dispatch,navigate)}>
                   <SiGmail className="social_icon gmail_icon" />
                   Gmail
                 </div>

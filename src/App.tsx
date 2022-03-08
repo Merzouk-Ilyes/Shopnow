@@ -4,18 +4,36 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Forget from "./components/auth/Forget";
 import { useDispatch } from "react-redux";
+import { actions } from "./services/store";
+import { ToastContainer } from "react-toastify";
+import { firebaseConfig } from "./firebase";
+import { initializeApp } from "firebase/app";
+import AllProducts from "./components/products/AllProducts";
+export const app = initializeApp(firebaseConfig)
 
 function App() {
   let authToken = sessionStorage.getItem("UID");
   const dispatch = useDispatch();
   if (authToken) {
-    dispatch({ type: "setLogin" });
+    dispatch(actions.setLogin(true));
   } else {
-    dispatch({ type: "setLogout" });
+    dispatch(actions.setLogin(false));
   }
 
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,6 +44,7 @@ function App() {
             element={<Login title="Register" type="register" />}
           />
           <Route path="forget" element={<Forget />} />
+          <Route path="all" element={<AllProducts />} />
 
           <Route
             path="*"

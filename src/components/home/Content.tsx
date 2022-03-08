@@ -6,6 +6,8 @@ import {
   MdSentimentSatisfiedAlt,
 } from "react-icons/md";
 import Header from "./Header";
+import { Link } from "react-router-dom";
+import { leftSlide, rightSlide } from "../../services/helpers";
 
 export function Slider() {
   let picsSmall = [
@@ -17,42 +19,20 @@ export function Slider() {
     `url(${require("../../assets/big/girl1.jpg")})`,
     `url(${require("../../assets/big/girlo.jpg")})`,
   ];
-  let i = 0;
-
-  function leftSlide() {
-    let slider:any = document.getElementsByClassName("slider")[0];
-    i++;
-    if (slider.offsetWidth > 1000) {
-      if (i >= 2) i = 0;
-      slider.style.backgroundImage = picsBig[i];
-    } else {
-      if (i >= 3) i = 0;
-
-      slider.style.backgroundImage = picsSmall[i];
-    }
-  }
-  function rightSlide() {
-    let slider: any = document.getElementsByClassName("slider")[0];
-    i--;
-    if (slider.offsetWidth > 1000) {
-      if (i < 0) i = 1;
-      slider.style.backgroundImage = picsBig[i];
-    } else {
-      if (i < 0) i = 2;
-      slider.style.backgroundImage = picsSmall[i];
-    }
-  }
   return (
     <div className="slider" id="slider">
       <Header color="" />
       <div className="slider-body">
         <h1>Sale of the summer collection</h1>
-        <div className="shop-now">
-          <div className="icon-div">
-            <BsArrowRight className="icon" />
+        <Link to="all">
+          <div className="shop-now">
+            <div className="icon-div">
+              <BsArrowRight className="icon" />
+            </div>
+          Shop now
           </div>
-          <a href="/">Shop now</a>
-        </div>
+        </Link>
+
         <div className="bottom-left">
           <div className="ad-flex">
             <div className="icon-div">
@@ -83,12 +63,10 @@ export function Slider() {
           </div>
         </div>
         <div className="slider-btns">
-          <BsArrowLeft className="left-slider" onClick={leftSlide} />
-          <BsArrowRight className="right-slider" onClick={rightSlide} />
+          <BsArrowLeft className="left-slider" onClick={() => leftSlide(document,picsBig,picsSmall)} />
+          <BsArrowRight className="right-slider" onClick={() => rightSlide(document,picsBig,picsSmall)} />
         </div>
       </div>
     </div>
   );
 }
-
-
