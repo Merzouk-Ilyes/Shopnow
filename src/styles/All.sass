@@ -1,0 +1,77 @@
+.all
+    height: 100vh
+    width: 80vw
+    margin: 3em auto
+    display: flex
+    justify-content: space-between
+    .main-content
+        height: 100vh
+        width: 70%
+        @media screen and (max-width: 800px)
+            width: 100%
+        .filters
+            height: 10vh
+            display: flex
+            justify-content: space-between
+            align-items: center
+            flex-wrap: wrap
+            
+            &>p:nth-child(1)
+                font-size: 1em
+                letter-spacing: 1px
+
+            .filters-content
+                display: flex
+                align-items: center
+                justify-content: space-between
+                p
+                    margin: 0 .5em 0 .8em
+                    font-size: .8em
+                    font-weight: bold
+        .cards
+            display: grid
+            grid-template-columns: repeat(3,1fr)
+            grid-gap: 3em
+            @media screen and (max-width: 1000px)
+                grid-template-columns: repeat(2,1fr)
+            @media screen and (max-width: 800px)
+                grid-template-columns: repeat(1,1fr)
+            .card
+                height: 380px
+                margin: auto
+                img
+                    height: 320px
+                    width: 200px
+                .title
+                    font-size: .9em
+                    margin-top: 5px
+                .price
+                    font-weight: 500
+    .left
+        height: 60vh
+        width: 28%
+        margin-left: .5em
+        @media screen and (max-width: 800px)
+            width: 0%
+        .product-type
+            height: 230px
+            width: 90%
+            border: 1px solid #0000004a
+            padding: 1em 0 0 1.5em
+            margin: 1.8em auto
+            p
+                font-weight: 700
+                margin-bottom: .5em
+                letter-spacing: 1px
+        .size
+            height: 100px
+        .range
+            height: 140px
+            width: 90%
+            border: 1px solid #0000004a
+            padding: 1em 1em 0 1.5em
+            margin: 1em auto
+            p
+                font-weight: 700
+                margin-bottom: .8em
+                letter-spacing: 1px

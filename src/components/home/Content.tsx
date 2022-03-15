@@ -29,7 +29,7 @@ export function Slider() {
             <div className="icon-div">
               <BsArrowRight className="icon" />
             </div>
-          Shop now
+            <div className="text-white font-semibold" >Shop now</div>
           </div>
         </Link>
 
@@ -63,8 +63,14 @@ export function Slider() {
           </div>
         </div>
         <div className="slider-btns">
-          <BsArrowLeft className="left-slider" onClick={() => leftSlide(document,picsBig,picsSmall)} />
-          <BsArrowRight className="right-slider" onClick={() => rightSlide(document,picsBig,picsSmall)} />
+          <BsArrowLeft
+            className="left-slider"
+            onClick={() => leftSlide(document, picsBig, picsSmall)}
+          />
+          <BsArrowRight
+            className="right-slider"
+            onClick={() => rightSlide(document, picsBig, picsSmall)}
+          />
         </div>
       </div>
     </div>
