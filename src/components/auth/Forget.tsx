@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/Login.css";
 import Header from "../home/Header";
 import { BsArrowLeft } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { forgotPassword } from "../../services/auth_services";
 function Forget() {
+  const [email, setEmail] = useState("");
+  let navigate = useNavigate();
+
+
   return (
     <div className="login">
       <Header color="header_white" />
@@ -25,11 +30,15 @@ function Forget() {
                 id="email_forget"
                 className="login_form_box_input"
                 placeholder=" "
+                onChange={(e) => setEmail(e.target.value)}
               />
               <label className="login_form_box_label">Email</label>
             </div>
 
-            <div className="login_btn">Reset password</div>
+            <div className="login_btn"
+                onClick={() => forgotPassword(email, navigate)}
+            
+            >Reset password</div>
           </div>
         </div>
       </div>

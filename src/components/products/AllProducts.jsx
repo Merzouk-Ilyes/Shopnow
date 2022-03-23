@@ -17,13 +17,22 @@ import {
   Show,
   Stack,
   useDisclosure,
+  Spinner,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/All.sass";
 import Header from "../home/Header";
-import men from "../../assets/menn.png";
-
+import { Link } from "react-router-dom";
+import { getAllProducts } from "../../services/db_services.js";
 const AllProducts = () => {
+  const [products, setProducts] = useState([]);
+  
+
+  useEffect(() => {
+    setProducts([]);
+    getAllProducts(setProducts);
+  }, []);
+  // console.log(products);
   return (
     <>
       <Header color="header_white" />
@@ -46,12 +55,24 @@ const AllProducts = () => {
             </Show>
           </div>
           <div className="cards">
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {products.length == 0 ? (
+              <Spinner />
+            ) : (
+              products.map((product) => {
+                return (
+             <Link to={'/product?id=' + product.id} key={product.id}>
+                  <Card
+                    title={product.data().title}
+                    saleprice={product.data().saleprice}
+                    disprice={product.data().disprice}
+                    size={product.data().size}
+                    type={product.data().type}
+                    url={product.data().url}
+                  ></Card>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       </div>
@@ -59,19 +80,26 @@ const AllProducts = () => {
   );
 };
 
-const Card = () => {
+const Card = ({ title, saleprice, disprice, url, size, type }) => {
   return (
     <div className="card ">
-      <img src={men} alt="" />
-      <p className="title">T-Shirt Summer Vibes</p>
-      <p className="price">$89.99</p>
+      <img src={url} alt="image" />
+      <p className="title">{title}</p>
+      {disprice ? (
+        <div className="price">
+          <p className="sale-price">{saleprice}$</p>
+          <p className="dis-price">{disprice}$</p>
+        </div>
+      ) : (
+        <p className="normal-price">{saleprice}$</p>
+      )}
     </div>
   );
 };
 
 const FiltersDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100]);
+  const [priceRange, setPriceRange] = useState([0, 100]);
   return (
     <>
       <Button colorScheme="orange" onClick={onOpen}>
@@ -81,7 +109,7 @@ const FiltersDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerBody  className="">
+          <DrawerBody className="">
             <TypeFilter></TypeFilter>
             <Center height="50px">
               <Divider orientation="vertical" />
@@ -108,17 +136,17 @@ const TypeFilter = () => {
       <p>Product type</p>
       <CheckboxGroup defaultValue={[]}>
         <Stack spacing={[1, 4]} direction={["column"]}>
-          <Checkbox value="type1" colorScheme="orange" size="lg">
-            type1
+          <Checkbox value="t-shirt" colorScheme="orange" size="lg">
+            T-shirt
           </Checkbox>
-          <Checkbox value="type2" colorScheme="orange" size="lg">
-            type2
+          <Checkbox value="sweat" colorScheme="orange" size="lg">
+            Sweatshirts
           </Checkbox>
-          <Checkbox value="type3" colorScheme="orange" size="lg">
-            type3
+          <Checkbox value="tank" colorScheme="orange" size="lg">
+            Tank Tops
           </Checkbox>
-          <Checkbox value="type4" colorScheme="orange" size="lg">
-            type4
+          <Checkbox value="dress" colorScheme="orange" size="lg">
+            Dress shirts
           </Checkbox>
         </Stack>
       </CheckboxGroup>
@@ -127,7 +155,7 @@ const TypeFilter = () => {
 };
 
 const RangeFilter = () => {
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100]);
+  const [priceRange, setPriceRange] = useState([0, 100]);
   return (
     <div className="range">
       <p>Price</p>
@@ -156,17 +184,40 @@ const SizeFilter = () => {
       <p>Size</p>
       <CheckboxGroup defaultValue={[]}>
         <Stack spacing={[1, 4]} direction={["row"]}>
-          
-          <Checkbox value="S" colorScheme="orange" size="lg">
+          <Checkbox
+            value="S"
+            colorScheme="orange"
+            size="lg"
+            onChange={(e) => console.log(e.target.value)}
+          >
             S
           </Checkbox>
-          <Checkbox value="M" colorScheme="orange" size="lg">
+          <Checkbox
+            value="M"
+            colorScheme="orange"
+            size="lg"
+            onChange={(e) => console.log(e.target.value)}
+          >
             M
           </Checkbox>
-          <Checkbox value="L" colorScheme="orange" size="lg">
+          <Checkbox
+            value="L"
+            colorScheme="orange"
+            size="lg"
+            onChange={(e) => console.log(e.target.value)}
+          >
             L
           </Checkbox>
-          <Checkbox value="XL" colorScheme="orange" size="lg">
+          <Checkbox
+            value="XL"
+            colorScheme="orange"
+            size="lg"
+            onChange={(e) =>
+              e.target.checked
+                ? console.log(e.target.value)
+                : console.log("no XL")
+            }
+          >
             XL
           </Checkbox>
         </Stack>

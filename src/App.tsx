@@ -1,6 +1,6 @@
 import { Home } from "./components/home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Cart from "./components/cart/Cart";
+import Cart from "./components/cart/Cart";
 import Login from "./components/auth/Login";
 import Forget from "./components/auth/Forget";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,11 @@ import { ToastContainer } from "react-toastify";
 import { firebaseConfig } from "./firebase";
 import { initializeApp } from "firebase/app";
 import AllProducts from "./components/products/AllProducts";
+import { getFirestore } from "firebase/firestore";
+import Product from "./components/products/Product.jsx";
+
 export const app = initializeApp(firebaseConfig)
+export const db = getFirestore(app);
 
 function App() {
   let authToken = sessionStorage.getItem("UID");
@@ -37,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="cart" element={<Cart />} /> */}
+          <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login title="Login" type="login" />} />
           <Route
             path="register"
@@ -45,6 +49,7 @@ function App() {
           />
           <Route path="forget" element={<Forget />} />
           <Route path="all" element={<AllProducts />} />
+          <Route path="product" element={<Product />} />
 
           <Route
             path="*"

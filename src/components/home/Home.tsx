@@ -6,16 +6,12 @@ import WhyUs from "./WhyUs";
 import { ToastContainer } from "react-toastify";
 
 export  function Home() {
-  
   return (
-    <div>
-       
+    <>
       <Slider />;
       <Banner />;
       <HorizontalList />;
       <WhyUs/>
-
-
-    </div>
+    </>
   );
 }

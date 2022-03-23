@@ -405,14 +405,15 @@ ul {
     color: #000;
     position: absolute;
     top: 11vh;
-    width: 90vw;
-    left: 5vw;
+    width: 100vw;
+    left: 0;
     height: 50vh;
     grid-template-columns: repeat(5, 1fr);
     z-index: 12;
-    border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.646) 0px 7px 29px 0px;
+    /* border-radius: 20px; */
+    /* box-shadow: rgba(100, 100, 111, 0.646) 0px 7px 29px 0px; */
   }
+
   .main-menu a {
     position: relative;
     width: fit-content;
@@ -434,15 +435,15 @@ ul {
     margin-left: 5vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
   }
   .main-menu .grid2 .list1 {
-    margin-bottom: 35px;
+    margin-top: 3em;
   }
   .main-menu .grid2 a {
     font-size: 14px;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
   }
   .main-menu .grid2 .list-title {
     font-weight: 500;
@@ -470,10 +471,15 @@ ul {
     align-items: center;
     padding: 45px 0;
   }
+  .main-menu .grid3 div {
+    height: 100px;
+    width: 180px;
+    margin-bottom: 5px;
+  }
   .main-menu .grid3 img {
-    height: 40%;
-    width: 60%;
-    margin-top: 7px;
+    height: 100%;
+    width: 100%;
+    /* margin-top: 7px; */
     border-radius: 5px;
   }
   

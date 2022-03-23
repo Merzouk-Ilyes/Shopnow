@@ -6,7 +6,7 @@ import { SiGmail } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { authHandler,googleAuth } from "../../services/services";
+import { authHandler,googleAuth } from "../../services/auth_services";
 import { eyeTogglerOne, eyeTogglerTwo } from "../../services/helpers";
 import { useDispatch} from "react-redux";
 

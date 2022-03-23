@@ -16,7 +16,7 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { authHandler, logoutHandler } from "../../services/services";
+import { authHandler, logoutHandler } from "../../services/auth_services";
 import { closeNav, openNav } from "../../services/helpers";
 
 function Header(props: { color: string }) {
@@ -49,7 +49,7 @@ function Header(props: { color: string }) {
             >
               Women
             </a>
-            <MainMenu genre="women" />
+            <MainMenu genre="w" />
           </li>
           <li className="flex items-center my-0 mx-6 ">
             <a

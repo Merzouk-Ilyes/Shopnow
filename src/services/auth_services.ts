@@ -1,19 +1,10 @@
-// import { db } from "../firebase";
-import {
-  collection,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { loginProps } from "../components/auth/Login";
 import { toast } from "react-toastify";
@@ -119,3 +110,24 @@ export const googleAuth = (dispatch: any,navigate:any) => {
       // ...
     });
 };
+
+
+export const forgotPassword = (email:string,navigate:any) => {
+  const auth = getAuth();
+   sendPasswordResetEmail(auth,email).then(() => {
+    toast.success("Reset email has been set");
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+
+
+   }).catch((error) => {
+
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    toast.error(errorMessage);
+
+
+   })
+
+}
