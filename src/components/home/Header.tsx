@@ -30,7 +30,7 @@ function Header(props: { color: string }) {
     >
       <div className="container flex justify-between items-center flex-wrap w-[80vw] h-[11vh] ">
         <Link to="/" className="icon-link">
-          <div className="logo text-lg font-bold ">E-Shop</div>
+          <div className="logo text-lg font-bold ">Shop Now</div>
         </Link>
         <ul className="flex h-[11vh] ">
           <li className="flex items-center my-0 mx-6 ">

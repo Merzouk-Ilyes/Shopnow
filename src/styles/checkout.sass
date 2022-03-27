@@ -1,0 +1,138 @@
+.layout-checkout
+    height: 70vh
+    padding: 0 150px
+    margin-top: 50px
+    @media screen and (max-width: 900px)
+       padding: 0 30px
+
+    .top-section
+        height: 70px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        p
+            font-size: 1em
+            font-weight: 700
+        .cart-status
+            display: flex
+            align-items: center
+            font-size: 1.2em
+            div:nth-child(2)
+                height: 1px
+                width: 90px
+                margin: 0 20px
+                background-color: #FBB03B
+            .status-icon1
+                height: 30px
+                width: 30px
+                background-color: #FFF
+                border-radius: 50%
+                padding: 4px
+                color: #FBB03B
+                border: 1px solid #FBB03B
+                display: flex
+                justify-content: center
+                align-items: center
+            .status-icon2
+                height: 30px
+                width: 30px
+                background-color: #FBB03B
+                border-radius: 50%
+                padding: 4px
+                color: white
+                display: flex
+                justify-content: center
+                align-items: center
+    .main-section
+        display: grid
+        grid-template-columns: repeat(3,1fr)
+        @media screen and (max-width: 1100px)
+            grid-template-columns: repeat(1,1fr)
+        @media screen and (max-width: 900px)
+            display: block
+            margin: auto
+        .info
+            .inputs
+                display: flex
+                margin: 1em 1em 1em 0
+                input
+                    height: 40px
+                    width: 220px
+                    border-radius: 20px
+                    padding: .5em 1em
+                    border: 1px solid #0000002e
+                    font-size: .8em
+                    margin: .5em
+            p
+                font-weight: 600
+        .payment
+            padding-top: 1em
+            .logo
+                font-size: 2.5em
+                margin: .5em
+        .your-cart
+            padding-left: .6em
+            &>p:nth-child(1)
+                font-weight: 700
+                font-size: 1em
+            .tuple
+                display: flex
+                align-items: center
+                margin: .6em
+
+                .img
+                    height: 55px
+                    width: 55px
+                    img
+                        height: 100%
+                        width: 100%
+                        border-radius: 50%
+                p
+                    font-size: 1em
+                    font-weight: 700
+            .total-cost
+                background-color: #00000013
+                display: flex
+                justify-content: space-around
+                align-items: center
+                padding: .6em
+                margin: 1em 2.2em
+                border-radius: 40px
+    .bottom-section
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 1em 0 
+        .back
+            display: flex
+            align-items: center
+            justify-content: space-between
+        .links
+            display: flex
+            align-items: center
+            justify-content: space-between
+            .continue
+                border: 1px solid #00000045
+                border-radius: 40px
+                padding: .8em 1em
+                font-size: .8em
+                font-weight: 600
+                text-align: center
+                @media screen and (max-width: 900px)
+                    padding: .5em .7em
+                    font-size: .7em
+            .proceed
+                background-color: #FBB03B
+                border-radius: 40px
+                padding: .8em 1em
+                font-size: .8em
+                font-weight: 600
+                text-align: center
+                @media screen and (max-width: 900px)
+                    padding: .5em .7em
+                    font-size: .7em
+
+
+
+
+

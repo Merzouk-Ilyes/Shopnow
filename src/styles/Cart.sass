@@ -1,0 +1,96 @@
+.layout-cart
+	height: 70vh
+	padding: 0 150px
+	margin-top: 50px
+	.top-section
+		height: 70px
+		display: flex
+		justify-content: space-between
+		align-items: center
+		p
+			font-size: 1em
+			font-weight: 700
+		.cart-status
+			display: flex
+			align-items: center
+			font-size: 1.2em
+			div:nth-child(2)
+				height: 1px
+				width: 90px
+				margin: 0 20px
+				background-color: #000
+			.status-icon1
+				height: 30px
+				width: 30px
+				background-color: #FBB03B
+				border-radius: 50%
+				padding: 4px
+				color: white
+				display: flex
+				justify-content: center
+				align-items: center
+
+	.main-section
+		table
+			width: 100%
+			border-spacing: 30px
+			.table-heading
+				height: 60px
+				color: grey
+			.table-content
+				height: 80px
+				&>td:nth-child(1)
+					display: flex
+					align-items: center
+					.image
+						height: 60px
+						width: 60px
+						img
+							height: 100%
+							width: 100%
+							border-radius: 50%
+					p
+						margin-left: 20px
+				&>td:nth-child(6)
+					font-size: 1.5em
+
+	.bottom-section
+		display: flex
+		align-items: center
+		justify-content: space-between
+		height: 90px
+		.back
+			display: flex
+			align-items: center
+			font-weight: 700
+
+		.total
+			display: flex
+			align-items: center
+			font-weight: 700
+
+		.promo
+			position: relative
+			input
+				height: 40px
+				width: 240px
+				border-radius: 20px
+				padding: .5em 1em
+				border: 1px solid grey
+				font-size: .8em
+			.promo-icon
+				position: absolute
+				right: 14px
+				top: 14px
+				font-size: .9em
+				color: grey
+		.checkout
+			height: 40px
+			width: 150px
+			border-radius: 20px
+			background-color: #FBB03B
+			display: flex
+			justify-content: center
+			align-items: center
+			font-weight: 700
+			font-size: .9em
