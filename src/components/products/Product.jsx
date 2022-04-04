@@ -2,46 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/product.sass";
 import Header from "../home/Header";
-import men from "../../assets/man.jpeg";
 import { Badge, Select } from "@chakra-ui/react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaShippingFast } from "react-icons/fa";
 import { MdOutlineLocalShipping } from "react-icons/md";
-import { getDocument } from "../../services/db_services";
+import { getDocument,addToCart } from "../../services/db_services";
 import { Spinner } from "@chakra-ui/react";
-import HorizontalList from "../home/HorizontalList"
+import HorizontalList from "../home/HorizontalList";
 function Product() {
   let query = useQuery();
   let id = query.get("id");
   const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1)
+  const [size, setSize] = useState();
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     getDocument("products", id, setProduct);
+
   }, []);
   console.log(product);
   return (
     <>
       <Header color="header_white" />
-      <div className="shipment">
-        <div className="standard">
-          <div className="icon">
-            <MdOutlineLocalShipping />
-          </div>
-          <div className="text">
-            <p>Standard shipment </p>
-            <p>Free within 3-6 business days</p>
-          </div>
-        </div>
-        <div className="express">
-          <div className="icon">
-            <FaShippingFast />
-          </div>
-          <div className="text">
-            <p>Express delivery</p>
-            <p>$35,00 available</p>
-          </div>
-        </div>
-      </div>
+      <Shipement />
       {product.length == 0 || !product ? (
         <Spinner />
       ) : (
@@ -58,7 +40,10 @@ function Product() {
             <div className="title">{product.title}</div>
             {product.disprice ? (
               <div className="prices">
-                <div className="saleprice"> ${product.saleprice * quantity}</div>
+                <div className="saleprice">
+                  {" "}
+                  $ {product.saleprice * quantity}
+                </div>
                 <div className="disprice">${product.disprice * quantity} </div>
               </div>
             ) : (
@@ -75,6 +60,8 @@ function Product() {
                 borderRadius="25"
                 color="black"
                 placeholder="Size "
+                defaultValue ={size}
+                onChange = { (e) => setSize(e.target.value) }
               >
                 <option value="XS">XS</option>
                 <option value="S">S</option>
@@ -85,16 +72,8 @@ function Product() {
             </div>
             <p>Quantity:</p>
             <div className="btns">
-              <div className="quantity">
-                <div className="minus"  onClick={() => (setQuantity(q=>q>1 ?  (q - 1) : q ))}>
-                  <AiOutlineMinus />
-                </div>
-                <div className="q">{quantity}</div>
-                <div className="plus" onClick={() => (setQuantity(q=>q + 1  ))} >
-                  <AiOutlinePlus />
-                </div>
-              </div>
-              <div className="cart">Add to cart </div>
+              <QBtn  quantity={quantity} setQuantity={setQuantity} />
+              <div className="cart" onClick={()=> addToCart(product,quantity,product.saleprice * quantity,size)}>Add to cart </div>
             </div>
           </div>
         </div>
@@ -111,3 +90,46 @@ function useQuery() {
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
+
+const Shipement = () => {
+  return (
+    <div className="shipment">
+      <div className="standard">
+        <div className="icon">
+          <MdOutlineLocalShipping />
+        </div>
+        <div className="text">
+          <p>Standard shipment </p>
+          <p>Free within 3-6 business days</p>
+        </div>
+      </div>
+      <div className="express">
+        <div className="icon">
+          <FaShippingFast />
+        </div>
+        <div className="text">
+          <p>Express delivery</p>
+          <p>$35,00 available</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const QBtn = ({quantity,setQuantity}) => {
+  
+  return (
+    <div className="quantity">
+      <div
+        className="minus"
+        onClick={() => setQuantity((q) => (q > 1 ? q - 1 : q))}
+      >
+        <AiOutlineMinus />
+      </div>
+      <div className="q">{quantity}</div>
+      <div className="plus" onClick={() => setQuantity((q) => q + 1)}>
+        <AiOutlinePlus />
+      </div>
+    </div>
+  );
+};

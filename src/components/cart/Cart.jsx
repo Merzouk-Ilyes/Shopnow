@@ -86,10 +86,12 @@ export const CartTable = () => {
 export const CheckoutSection = () => {
   return (
     <div className="bottom-section">
+    <Link to="/">
       <div className="back">
         <AiOutlineArrowLeft /> &nbsp; &nbsp;
         <p>Continue shopping</p>
       </div>
+      </Link>
       <div className="promo">
         <input type="text" placeholder="Promo code" />
         <FaLocationArrow className="promo-icon" />

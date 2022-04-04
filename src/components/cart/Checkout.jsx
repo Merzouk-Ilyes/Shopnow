@@ -38,33 +38,33 @@ const Payment = () => {
 
   return (
     <div>
-    <p className="font-bold">Payment method</p>
-    <div className="payment">
-      <RadioGroup onChange={setValue} value={value}>
-        <Stack direction="row">
-          <Radio size="lg" colorScheme="orange" value="paypal">
-            <BsPaypal className="logo" />
-          </Radio>
-          <Radio size="lg" colorScheme="orange" value="master">
-            <FaCcMastercard className="logo" />
-          </Radio>
-          <Radio size="lg" colorScheme="orange" value="express">
-            <SiAmericanexpress className="logo" />
-          </Radio>
-        </Stack>
-        <Stack direction="row">
-          <Radio size="lg" colorScheme="orange" value="bank">
-            <SiBankofamerica className="logo" />
-          </Radio>
-          <Radio size="lg" colorScheme="orange" value="visa">
-            <FaCcVisa className="logo" />
-          </Radio>
-          <Radio size="lg" colorScheme="orange" value="discover">
-            <FaCcDiscover className="logo" />
-          </Radio>
-        </Stack>
-      </RadioGroup>
-    </div>
+      <p className="font-bold">Payment method</p>
+      <div className="payment">
+        <RadioGroup onChange={setValue} value={value}>
+          <Stack direction="row">
+            <Radio size="lg" colorScheme="orange" value="paypal">
+              <BsPaypal className="logo" />
+            </Radio>
+            <Radio size="lg" colorScheme="orange" value="master">
+              <FaCcMastercard className="logo" />
+            </Radio>
+            <Radio size="lg" colorScheme="orange" value="express">
+              <SiAmericanexpress className="logo" />
+            </Radio>
+          </Stack>
+          <Stack direction="row">
+            <Radio size="lg" colorScheme="orange" value="bank">
+              <SiBankofamerica className="logo" />
+            </Radio>
+            <Radio size="lg" colorScheme="orange" value="visa">
+              <FaCcVisa className="logo" />
+            </Radio>
+            <Radio size="lg" colorScheme="orange" value="discover">
+              <FaCcDiscover className="logo" />
+            </Radio>
+          </Stack>
+        </RadioGroup>
+      </div>
     </div>
   );
 };
@@ -133,16 +133,19 @@ const Tuple = () => {
 const Bottom = () => {
   return (
     <div className="bottom-section">
-      <div className="back">
-        <AiOutlineArrowLeft /> &nbsp; &nbsp;
-        <p>Back</p>
-      </div>
+      <Link to="/cart">
+        
+        <div className="back">
+          <AiOutlineArrowLeft /> &nbsp; &nbsp;
+          <p>Back</p>
+        </div>
+      </Link>
+
       <div className="links">
         <Link to="/">
           <div className="continue">CONTINUE SHOPPING</div>
         </Link>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
         <div className="proceed">PROCEED TO PAYMENT</div>
       </div>
     </div>
