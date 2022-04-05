@@ -12,8 +12,11 @@ import HorizontalList from "../home/HorizontalList";
 function Product() {
   let query = useQuery();
   let id = query.get("id");
+  let UID = sessionStorage.getItem("UID");
+  console.log(UID)
+
   const [product, setProduct] = useState({});
-  const [size, setSize] = useState();
+  const [size, setSize] = useState("M");
   const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     getDocument("products", id, setProduct);
@@ -73,7 +76,7 @@ function Product() {
             <p>Quantity:</p>
             <div className="btns">
               <QBtn  quantity={quantity} setQuantity={setQuantity} />
-              <div className="cart" onClick={()=> addToCart(product,quantity,product.saleprice * quantity,size)}>Add to cart </div>
+              <div className="cart" onClick={()=> addToCart(product,quantity,product.saleprice * quantity,size,UID)}>Add to cart </div>
             </div>
           </div>
         </div>
