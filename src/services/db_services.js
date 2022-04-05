@@ -3,7 +3,7 @@ import {
   collection,
   getDoc,
   doc,
-  addDoc,
+  setDoc,
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../App";
@@ -20,8 +20,9 @@ export const getAllProducts = async (setProducts) => {
 export const getDocument = async (collection, docId, setProduct) => {
   const docRef = doc(db, collection, docId);
   const docSnap = await getDoc(docRef);
-  console.log(docSnap.data());
-  setProduct(docSnap.data());
+  let data = docSnap.data();
+  data.id = docSnap.id;
+  setProduct(data);
 };
 
 export const addToCart = async (product, quantity, price, size, UID) => {
@@ -30,13 +31,17 @@ export const addToCart = async (product, quantity, price, size, UID) => {
     return;
   }
 
-  const docRef = await addDoc(collection(db, "carts", UID, "cart"), {
-    title: product.title,
-    url: product.url,
-    price: price,
-    quantity: quantity,
-    size: size,
-    timestamp: serverTimestamp(),
-  });
+  const docRef = await setDoc(
+    doc(db, "carts", UID, "cart", product.id),
+    {
+      title: product.title,
+      url: product.url,
+      price: price,
+      quantity: quantity,
+      size: size,
+      id: product.id,
+      timestamp: serverTimestamp(),
+    }
+  );
   toast.success("Item added to cart");
 };
