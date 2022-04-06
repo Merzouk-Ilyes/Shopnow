@@ -23,72 +23,51 @@ function MainMenu(props: mainMenuProps) {
       </div>
       <div className="grid2">
         <div className="list1">
-          <a href="/" className="list-title">
+          <a href="/all" className="list-title">
             SHOES
           </a>
-          <a href="/">Lifestyle</a>
-          <a href="/">Running</a>
-          <a href="/">Soccer</a>
-          <a href="/">Basketball</a>
-          <a href="/">Baseball</a>
-          <a href="/">Golf</a>
-          <a href="/">Football</a>
+          <a href="/all">Lifestyle</a>
+          <a href="/all">Running</a>
+          <a href="/all">Soccer</a>
+          <a href="/all">Basketball</a>
+          <a href="/all">Baseball</a>
+          <a href="/all">Golf</a>
+          <a href="/all">Football</a>
         </div>
-        {/* <div className="list2">
-          <a href="/" className="list-title">
-            BAGS
-          </a>
-          <a href="/">Backpacks</a>
-          <a href="/">Messenger Bags</a>
-          <a href="/">Luggage</a>
-        </div> */}
+      
       </div>
       <div className="grid2">
         <div className="list1">
-          <a href="/" className="list-title">
+          <a href="/all" className="list-title">
             Clothing
           </a>
-          <a href="/">Pants</a>
-          <a href="/"> Hoodies & Sweatshirts</a>
-          <a href="/">Jackets & Vests</a>
-          <a href="/">Track Suits</a>
-          <a href="/">Short Sleeve Shirts</a>
-          <a href="/">T-Shirts</a>
-          <a href="/">Jerseys</a>
-          <a href="/">Shorts</a>
-          <a href="/">Jeans</a>
+          <a href="/all">Pants</a>
+          <a href="/all"> Hoodies & Sweatshirts</a>
+          <a href="/all">Jackets & Vests</a>
+          <a href="/all">Track Suits</a>
+          <a href="/all">Short Sleeve Shirts</a>
+          <a href="/all">T-Shirts</a>
+          <a href="/all">Jerseys</a>
+          <a href="/all">Shorts</a>
+          <a href="/all">Jeans</a>
         </div>
-        {/* <div className="list2">
-          <a href="/" className="list-title">
-            Outerwear
-          </a>
-          <a href="/">Parkas</a>
-          <a href="/">Jackets</a>
-          <a href="/">Coats</a>
-        </div> */}
+       
       </div>
       <div className="grid2">
         <div className="list1">
-          <a href="/" className="list-title">
+          <a href="/all" className="list-title">
             Accesorries
           </a>
-          <a href="/">Glasses</a>
-          <a href="/">Caps & Hats</a>
-          <a href="/">Watches</a>
-          <a href="/">Belts</a>
-          <a href="/">Bags</a>
-          <a href="/">Wallets & Cases</a>
-          <a href="/">Scarves</a>
-          <a href="/">Glasses</a>
+          <a href="/all">Glasses</a>
+          <a href="/all">Caps & Hats</a>
+          <a href="/all">Watches</a>
+          <a href="/all">Belts</a>
+          <a href="/all">Bags</a>
+          <a href="/all">Wallets & Cases</a>
+          <a href="/all">Scarves</a>
+          <a href="/all">Glasses</a>
         </div>
-        {/* <div className="list2">
-          <a href="/" className="list-title">
-            Collections
-          </a>
-          <a href="/">Originals</a>
-          <a href="/">New Casual</a>
-          <a href="/">Reviving Retro</a>
-        </div> */}
+        
       </div>
 
       {props.genre == "w" ? (

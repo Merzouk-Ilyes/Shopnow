@@ -88,6 +88,8 @@ ul {
     }
     .header .container .icons .menu {
       display: block;
+      margin-left: 10px;
+      font-size: 25px
     }
   }
   .slider-body h1 {
@@ -299,17 +301,19 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 350px;
+    margin: 0 auto;
   }
   
   .search-box {
     width: 350px;
     height: 40px;
     border-radius: 20px;
-    cursor: pointer;
     background-color: white;
     padding-left: 15px;
     border: 1px solid rgba(0, 0, 0, 0.185);
   }
+  
   .search-box:focus {
     transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
     border: none;
@@ -608,3 +612,9 @@ ul {
     }
   }
   
+  .accord-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

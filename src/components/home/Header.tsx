@@ -14,15 +14,27 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerOverlay,
+  DrawerHeader,
+  useDisclosure,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from "@chakra-ui/react";
+
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { authHandler, logoutHandler } from "../../services/auth_services";
-import { closeNav, openNav } from "../../services/helpers";
+import { logoutHandler } from "../../services/auth_services";
 
 function Header(props: { color: string }) {
   const isLogged = useSelector((state: RootStateOrAny) => state.isLogged);
   let navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div
@@ -63,22 +75,92 @@ function Header(props: { color: string }) {
         </ul>
 
         {/* BURGER MENU */}
-        <div id="mySidenav" className="sidenav">
-          <GrClose className="closebtn" onClick={() => closeNav(document)} />
-          <div className="search-container search-container-hidden">
-            <input
-              id="search-box"
-              type="text"
-              className="search-box"
-              placeholder="Enter the product you are looking for"
-            />
-            <BiSearchAlt className="search-icon " />
-          </div>
-          <a href="#men">Men</a>
-          <a href="#women">Women</a>
-          <a href="#kids">Kids</a>
-        </div>
-        {/* BURGER MENU  END*/}
+        <Drawer onClose={onClose} isOpen={isOpen} size={"sm"}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerHeader>
+              <div className="search-container">
+                <input
+                  type="text"
+                  className="search-box "
+                  placeholder="Enter the product you are looking for"
+                />
+                <BiSearchAlt className="search-icon text-[18px]  " />
+              </div>
+            </DrawerHeader>
+            <DrawerBody>
+              <Accordion defaultIndex={[0]} allowMultiple>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        SHOES
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <div className="accord-links">
+                      <a href="/all">Lifestyle</a>
+                      <a href="/all">Running</a>
+                      <a href="/all">Soccer</a>
+                      <a href="/all">Basketball</a>
+                      <a href="/all">Baseball</a>
+                      <a href="/all">Golf</a>
+                      <a href="/all">Football</a>
+                    </div>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        Clothing
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <div className="accord-links">
+                      <a href="/all">Pants</a>
+                      <a href="/all"> Hoodies & Sweatshirts</a>
+                      <a href="/all">Jackets & Vests</a>
+                      <a href="/all">Track Suits</a>
+                      <a href="/all">Short Sleeve Shirts</a>
+                      <a href="/all">T-Shirts</a>
+                      <a href="/all">Jerseys</a>
+                      <a href="/all">Shorts</a>
+                      <a href="/all">Jeans</a>
+                    </div>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        Accesorries
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <div className="accord-links">
+                      <a href="/all">Glasses</a>
+                      <a href="/all">Caps & Hats</a>
+                      <a href="/all">Watches</a>
+                      <a href="/all">Belts</a>
+                      <a href="/all">Bags</a>
+                      <a href="/all">Wallets & Cases</a>
+                      <a href="/all">Scarves</a>
+                      <a href="/all">Glasses</a>
+                    </div>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+        {/* BURGER MENU END*/}
 
         <div className="icons h-[11vh] flex relative items-center">
           <div className="search-container">
@@ -115,10 +197,7 @@ function Header(props: { color: string }) {
             </Link>
           )}
 
-          <HiOutlineMenu
-            className="icon menu"
-            onClick={() => openNav(document)}
-          />
+          <HiOutlineMenu className="icon menu" onClick={onOpen} />
         </div>
       </div>
     </div>
