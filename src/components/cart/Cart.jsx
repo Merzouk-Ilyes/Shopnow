@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "../../styles/Cart.sass";
 import Header from "../home/Header";
 import man from "../../assets/man.jpeg";
@@ -7,7 +7,9 @@ import { FaLocationArrow } from "react-icons/fa";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { getCart } from "../../services/db_services";
+import {Spinner} from "@chakra-ui/react";
+import {dltDoc} from "../../services/db_services"
 function Cart() {
   return (
     <>
@@ -38,47 +40,45 @@ function Cart() {
 export default Cart;
 
 export const CartTable = () => {
+  let UID = sessionStorage.getItem("UID");
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    setProducts([]);
+    getCart(setProducts,UID);
+  }, []);
+
   return (
     <table>
       <tr className="table-heading">
         <td>Product</td>
-
-        <td>Color</td>
         <td>Size</td>
         <td>Ammount</td>
         <td>Price</td>
         <td></td>
       </tr>
-      <tr className="table-content">
-        <td>
-          <div className="image">
-            <img src={man} alt="" />
-          </div>
-          <p>T-shite summer vibes</p>
-        </td>
-        <td>White</td>
-        <td>XL</td>
-        <td>2</td>
-        <td>100$</td>
-        <td>
-          <AiOutlineDelete />
-        </td>
-      </tr>
-      <tr className="table-content">
-        <td>
-          <div className="image">
-            <img src={man} alt="" />
-          </div>
-          <p>T-shite summer vibes</p>
-        </td>
-        <td>White</td>
-        <td>XL</td>
-        <td>2</td>
-        <td>100$</td>
-        <td>
-          <AiOutlineDelete />
-        </td>
-      </tr>
+      {products.length === 0 ? (
+        <p>Cart is empty</p>
+      ) : (
+        products.map((product) => {
+          return (
+            <tr className="table-content" key={product.id} >
+              <td>
+                <div className="image">
+                  <img src={product.data().url} alt="" />
+                </div>
+                <p>{product.data().title}</p>
+              </td>
+              <td>{product.data().size}</td>
+              <td>{product.data().quantity}</td>
+              <td>$ {product.data().price}</td>
+              <td>
+                <AiOutlineDelete  onClick={()=> dltDoc(UID,product.id ,window)}  />
+              </td>
+            </tr>
+          );
+        })
+      )}
     </table>
   );
 };
@@ -86,11 +86,11 @@ export const CartTable = () => {
 export const CheckoutSection = () => {
   return (
     <div className="bottom-section">
-    <Link to="/">
-      <div className="back">
-        <AiOutlineArrowLeft /> &nbsp; &nbsp;
-        <p>Continue shopping</p>
-      </div>
+      <Link to="/">
+        <div className="back">
+          <AiOutlineArrowLeft /> &nbsp; &nbsp;
+          <p>Continue shopping</p>
+        </div>
       </Link>
       <div className="promo">
         <input type="text" placeholder="Promo code" />

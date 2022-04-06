@@ -5,6 +5,7 @@ import {
   doc,
   setDoc,
   serverTimestamp,
+  deleteDoc
 } from "firebase/firestore";
 import { db } from "../App";
 import { toast } from "react-toastify";
@@ -45,3 +46,16 @@ export const addToCart = async (product, quantity, price, size, UID) => {
   );
   toast.success("Item added to cart");
 };
+
+export const getCart = async (setProducts,UID) => {
+  const querySnapshot = await getDocs(collection(db, "carts",UID ,"cart"));
+  querySnapshot.forEach((product) => {
+    setProducts((products) => [...products, product]);
+  });
+};
+
+export const dltDoc = async (UID,prodId , window) => {
+  await deleteDoc(doc(db,"carts", UID, "cart", prodId));
+  // getCart(setProducts,UID)
+  window.location.reload(false)
+}

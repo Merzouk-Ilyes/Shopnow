@@ -27,7 +27,6 @@ import { getAllProducts } from "../../services/db_services.js";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   
-
   useEffect(() => {
     setProducts([]);
     getAllProducts(setProducts);
