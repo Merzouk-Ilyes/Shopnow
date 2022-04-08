@@ -24,6 +24,8 @@ import "../../styles/All.sass";
 import Header from "../home/Header";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../services/db_services.js";
+import Footer from "../home/Footer.jsx"
+
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   
@@ -75,6 +77,8 @@ const AllProducts = () => {
           </div>
         </div>
       </div>
+      <Footer />
+
     </>
   );
 };

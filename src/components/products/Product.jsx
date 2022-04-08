@@ -9,6 +9,7 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 import { getDocument,addToCart } from "../../services/db_services";
 import { Spinner } from "@chakra-ui/react";
 import HorizontalList from "../home/HorizontalList";
+import Footer from "../home/Footer.jsx"
 function Product() {
   let query = useQuery();
   let id = query.get("id");
@@ -82,6 +83,7 @@ function Product() {
         </div>
       )}
       <HorizontalList></HorizontalList>
+      <Footer />
     </>
   );
 }

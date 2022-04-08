@@ -25,6 +25,8 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Show,
+  DrawerCloseButton
 } from "@chakra-ui/react";
 
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
@@ -78,6 +80,10 @@ function Header(props: { color: string }) {
         <Drawer onClose={onClose} isOpen={isOpen} size={"sm"}>
           <DrawerOverlay />
           <DrawerContent>
+            <Box p="8" >
+
+          <DrawerCloseButton />
+            </Box>
             <DrawerHeader>
               <div className="search-container">
                 <input
@@ -163,6 +169,7 @@ function Header(props: { color: string }) {
         {/* BURGER MENU END*/}
 
         <div className="icons h-[11vh] flex relative items-center">
+        <Show breakpoint="(min-width: 720px)">
           <div className="search-container">
             <input
               type="text"
@@ -171,6 +178,7 @@ function Header(props: { color: string }) {
             />
             <BiSearchAlt className="search-icon text-[18px]  " />
           </div>
+          </Show>
 
           <Link to="/cart" className="icon-link  ">
             <RiShoppingCartLine className="icon relative text-[54px] py-0 px-4" />

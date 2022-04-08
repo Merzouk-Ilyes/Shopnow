@@ -3,8 +3,7 @@ import { Slider } from "./Content";
 import {Banner} from "./Banner";
 import HorizontalList from "./HorizontalList"
 import WhyUs from "./WhyUs";
-import { ToastContainer } from "react-toastify";
-
+import Footer from "./Footer.jsx"
 export  function Home() {
   return (
     <>
@@ -12,6 +11,7 @@ export  function Home() {
       <Banner />;
       <HorizontalList />;
       <WhyUs/>
+      <Footer />
     </>
   );
 }

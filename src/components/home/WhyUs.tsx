@@ -4,7 +4,7 @@ import {GiReceiveMoney,GiTakeMyMoney} from 'react-icons/gi'
 
 function WhyUs() {
   return (
-    <div className="why h-[30vh] mx-36 lg:mb-40 ">
+    <div className="why   ">
       <p className="title">Why should you choose us?</p>
       <div className="why-flex">
         <div className="section">

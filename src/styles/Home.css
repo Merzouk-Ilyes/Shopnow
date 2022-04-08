@@ -1,9 +1,10 @@
 /* It was 720 lines let's see what we can do  */
 html {
   scroll-behavior: smooth;
+  display: block
 }
 
-ul {
+ul,li {
     list-style: none;
   }
   
@@ -349,11 +350,7 @@ ul {
     border: 1px solid #0000006b;
   }
   
-  @media screen and (max-width: 720px) {
-    .search-container {
-      display: none;
-    }
-  }
+  
   
   .why .title {
     text-align: center;
@@ -387,10 +384,14 @@ ul {
     font-weight: 300;
     text-align: center;
   }
+  .why {
+    height: 300px;
+    margin: 0 50px;
+  }
   
   @media screen and (max-width: 1000px) {
     .why {
-      /* margin-bottom: 400px; */
+      height: 550px;
     }
     .why .why-flex {
       justify-content: center;
@@ -486,8 +487,6 @@ ul {
     /* margin-top: 7px; */
     border-radius: 5px;
   }
-  
-  /*# sourceMappingURL=MainMenu.css.map */
 /* Horizontal list   */
 .hlist {
     margin: 100px 14vw 30px 14vw;
