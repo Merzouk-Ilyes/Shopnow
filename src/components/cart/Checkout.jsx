@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../home/Header";
 import { FaCcVisa, FaCcMastercard, FaCcDiscover } from "react-icons/fa";
 import { RiShoppingCartLine } from "react-icons/ri";
@@ -10,8 +10,23 @@ import { SiAmericanexpress, SiBankofamerica } from "react-icons/si";
 import man from "../../assets/man.jpeg";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { getCart } from "../../services/db_services";
 
 function Checkout() {
+  let UID = sessionStorage.getItem("UID");
+  const [total, setTotal] = useState(0);
+  const [products, setProducts] = useState([]);
+  let t = 0;
+  useEffect(() => {
+    setProducts([]);
+    getCart(setProducts, UID);
+    products.forEach((product) => {
+      t = t + product.data().price;
+      console.log(product.data().price);
+    });
+    setTotal(t);
+  }, []);
+  console.log(products)
   return (
     <>
       <Header color="header_white" />
@@ -23,7 +38,7 @@ function Checkout() {
             <Inputs />
           </div>
           <Payment />
-          <YourCart />
+          <YourCart products={products} total={total} />
         </div>
         <Bottom />
       </div>
@@ -103,29 +118,36 @@ const TopSection = () => {
   );
 };
 
-const YourCart = () => {
+const YourCart = ({ products,total }) => {
   return (
     <div className="your-cart">
       <p>Your Cart</p>
-      <Tuple />
-      <Tuple />
-      <Tuple />
+      {products.map((product) => {
+        return (
+          <Tuple
+          key={product.id} 
+            url={product.data().url}
+            title={product.data().title}
+            price={product.data().price}
+          />
+        );
+      })}
       <div className="total-cost">
         <p>Total cost</p>
-        <p>$3000</p>
+        <p>${total}</p>
       </div>
     </div>
   );
 };
-const Tuple = () => {
+const Tuple = ({ url, title, price }) => {
   return (
     <div className="tuple">
       <div className="img">
-        <img src={man} alt="" />
+        <img src={url} alt="" />
       </div>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <p>T shirt</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <p>$660</p>
+      <p>{title}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p>${price}</p>
     </div>
   );
 };
@@ -134,7 +156,6 @@ const Bottom = () => {
   return (
     <div className="bottom-section">
       <Link to="/cart">
-        
         <div className="back">
           <AiOutlineArrowLeft /> &nbsp; &nbsp;
           <p>Back</p>

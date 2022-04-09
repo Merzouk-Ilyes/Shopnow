@@ -11,6 +11,21 @@ import { getCart } from "../../services/db_services";
 import {Spinner} from "@chakra-ui/react";
 import {dltDoc} from "../../services/db_services"
 function Cart() {
+  let UID = sessionStorage.getItem("UID");
+  const [total , setTotal] = useState(0)
+  const [products, setProducts] = useState([]);
+  let t = 0;
+  useEffect(() => {
+    setProducts([]);
+    getCart(setProducts,UID);
+    products.forEach((product) => {
+      t =  t + product.data().price 
+      console.log(product.data().price)
+
+    })
+    setTotal(t)
+  }, []);
+
   return (
     <>
       <Header color="header_white" />
@@ -29,9 +44,9 @@ function Cart() {
           </div>
         </div>
         <div className="main-section">
-          <CartTable />
+          <CartTable products={products} UID={UID} />
         </div>
-        <CheckoutSection />
+        <CheckoutSection products={products} />
       </div>
     </>
   );
@@ -39,15 +54,8 @@ function Cart() {
 
 export default Cart;
 
-export const CartTable = () => {
-  let UID = sessionStorage.getItem("UID");
-
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    setProducts([]);
-    getCart(setProducts,UID);
-  }, []);
-
+export const CartTable = ({products , UID}) => {
+  
   return (
     <table>
       <tr className="table-heading">
@@ -83,7 +91,18 @@ export const CartTable = () => {
   );
 };
 
-export const CheckoutSection = () => {
+export const CheckoutSection = ({products}) => {
+  const [total , setTotal] = useState(0)
+  let t = 0;
+  useEffect(() => {
+    products.forEach((product) => {
+      t =  t + product.data().price 
+      console.log(product.data().price)
+    })
+    
+    setTotal(t)
+  }, []);
+  
   return (
     <div className="bottom-section">
       <Link to="/">
@@ -98,7 +117,7 @@ export const CheckoutSection = () => {
       </div>
       <div className="total">
         <p>Total: &nbsp; &nbsp;</p>
-        <p>200$</p>
+        <p>${total}</p>
       </div>
       <Link to="/checkout">
         <div className="checkout">CHECKOUT</div>

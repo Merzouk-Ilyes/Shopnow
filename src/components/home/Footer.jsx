@@ -1,4 +1,4 @@
-import { Grid, Box, Flex, Divider } from "@chakra-ui/react";
+import {Box, Flex, Divider } from "@chakra-ui/react";
 import "../../styles/footer.sass";
 import {
   AiFillInstagram,
@@ -11,7 +11,7 @@ function Footer() {
   return (
     <>
       <Divider />
-      <div   className="grid">
+      <div  className="grid">
         <Box w="100%" h="300" className="col-1">
           <h2>Shop now</h2>
           <p>
