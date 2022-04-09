@@ -4,6 +4,7 @@ import {Banner} from "./Banner";
 import HorizontalList from "./HorizontalList.jsx"
 import WhyUs from "./WhyUs";
 import Footer from "./Footer.jsx"
+import Ad from "./ad"
 export  function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export  function Home() {
       <Banner />;
       <HorizontalList />;
       <WhyUs/>
+      <Ad />
       <Footer />
     </>
   );

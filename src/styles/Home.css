@@ -386,12 +386,12 @@ ul,li {
   }
   .why {
     height: 300px;
-    margin: 0 50px;
+    margin: 0 100px;
   }
   
   @media screen and (max-width: 1000px) {
     .why {
-      height: 550px;
+      height: 570px;
     }
     .why .why-flex {
       justify-content: center;
