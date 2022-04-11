@@ -7,7 +7,7 @@ import Forget from "./components/auth/Forget";
 import { useDispatch } from "react-redux";
 import { actions } from "./services/store";
 import { ToastContainer } from "react-toastify";
-import { firebaseConfig } from "./firebase";
+import { firebaseConfig } from "./firebase.ts";
 import { initializeApp } from "firebase/app";
 import AllProducts from "./components/products/AllProducts";
 import { getFirestore } from "firebase/firestore";
