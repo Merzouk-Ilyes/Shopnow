@@ -48,8 +48,8 @@ function MainMenu(props: mainMenuProps) {
           <a href="/all">Short Sleeve Shirts</a>
           <a href="/all">T-Shirts</a>
           <a href="/all">Jerseys</a>
-          <a href="/all">Shorts</a>
-          <a href="/all">Jeans</a>
+          {/* <a href="/all">Shorts</a>
+          <a href="/all">Jeans</a> */}
         </div>
        
       </div>
@@ -78,9 +78,9 @@ function MainMenu(props: mainMenuProps) {
           <div>
             <img src={z} alt="img"></img>
           </div>
-          <div>
+          {/* <div>
             <img src={g} alt="img"></img>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="grid3">
@@ -90,9 +90,9 @@ function MainMenu(props: mainMenuProps) {
           <div>
             <img src={nike1} alt="img"></img>
           </div>
-          <div>
+          {/* <div>
             <img src={nike3} alt="img"></img>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
